@@ -1,0 +1,2 @@
+[console_scripts]
+cflow = classroom_flow.cli:main
