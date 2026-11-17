@@ -126,7 +126,7 @@ def cmd_lembrete(args) -> int:
     try:
         service = classroom_service(get_credentials(interactive=False))
         pending = sorted(
-            alerts.collect_pending(service, now, timedelta(days=7), grace=timedelta(days=7)),
+            alerts.collect_pending(service, now, timedelta(days=3), grace=timedelta(days=3)),
             key=lambda item: item[0].due,
         )
         if pending:
@@ -136,7 +136,7 @@ def cmd_lembrete(args) -> int:
             if len(pending) > 5:
                 lines.append(f"…e mais {len(pending) - 5}.")
         else:
-            lines.append("Nada pendente nos próximos 7 dias 🎉")
+            lines.append("Nada pendente nos próximos 3 dias 🎉")
     except AuthError:
         lines.append("Seu login expirou: rode `cflow login` no Mac.")
     except (HttpError, ConnectionError, TimeoutError, httplib2.HttpLib2Error) as exc:
